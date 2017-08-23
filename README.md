@@ -18,8 +18,11 @@ Compile o programa utilizando a versão indicada do Lazarus.
 Configure o arquivo PDV.INI conforme abaixo:
 
 > [CONFIG]
+
 > DATABASENAME=C:\PDV\DB\HOMOLOG.GDB
+
 > IMPRESSORA=\\127.0.0.1\BEMATECH4200
 
 DATABASENAME = Caminho onde encontra-se o arquivo de banco de dados.
+
 IMPRESSORA = Caminho do compartilhamento da impressora ou nome da porta utilizada. Também pode ser utilizado um arquivo TXT para teste (Ex: IMPRESSORA=C:\TESTE.TXT).
