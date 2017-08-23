@@ -1,0 +1,87 @@
+unit unfPagamento;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Buttons;
+
+type
+
+  { TfrmPagamento }
+
+  TfrmPagamento = class(TForm)
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    edtValorTotal: TEdit;
+    edtValorRecebido: TEdit;
+    edtTroco: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure edtValorRecebidoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+    valorTotal: Double;
+    Troco: Double;
+    confirmado: Boolean;
+    valorRecebido: Double;
+  end;
+
+var
+  frmPagamento: TfrmPagamento;
+
+implementation
+
+{$R *.lfm}
+
+{ TfrmPagamento }
+
+procedure TfrmPagamento.FormShow(Sender: TObject);
+begin
+  edtTroco.Text:='0,00';
+  edtValorTotal.Text := FormatFloat('#,##0.00', valorTotal);
+  edtValorRecebido.Text := FormatFloat('#,##0.00', valorTotal);
+  valorRecebido:=valorTotal;
+  edtValorRecebido.SetFocus;
+  edtValorRecebido.SelectAll;
+end;
+
+procedure TfrmPagamento.edtValorRecebidoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key = 13) then
+  begin
+    valorRecebido:=StrToFloat(edtValorRecebido.Text);
+    Troco := valorRecebido - valorTotal;
+    edtTroco.Text:= FormatFloat('#,##0.00', Troco);
+  end;
+end;
+
+procedure TfrmPagamento.BitBtn2Click(Sender: TObject);
+begin
+  if valorRecebido >= valorTotal then
+  begin
+     confirmado:=true;
+     Close;
+  end
+  else
+     ShowMessage('Valor recebido inválido');
+end;
+
+procedure TfrmPagamento.BitBtn3Click(Sender: TObject);
+begin
+  confirmado:=false;
+  Close;
+end;
+
+end.
+

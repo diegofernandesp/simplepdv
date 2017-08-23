@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.17" DotMatrixReport="True" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Bematech4200" ReportOptions.CreateDate="42961,9548129977" ReportOptions.Description.Text="" ReportOptions.LastChange="42962,0140470139" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C656674031B0103546F70027A08446174617365747301010C2C00000020446174615365743D224649425175657279312220446174615365744E616D653D22464942517565727931220000095661726961626C65730100055374796C650100">
+  <TfrxDMPPage Name="Page1" PaperWidth="106,679931102544" PaperHeight="296,862308276426" PaperSize="256" LeftMargin="2,53999835958439" RightMargin="2,53999835958439" TopMargin="4,49791376176403" BottomMargin="4,49791376176403" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="" FontStyle="0">
+    <TfrxFIBDatabase Name="FIBDatabase1" DatabaseName="C:\PDV\DB\PDV.GDB" LoginPrompt="False" Params.Text="user_name=sysdba&#13;&#10;password=sysdbambd" SQLDialect="3" Connected="True"/>
+    <TfrxFIBQuery Name="FIBQuery1" UserName="FIBQuery1" CloseDataSource="True" FieldAliases.Text="" SQL.Text="   select&#13;&#10;     cast(vendas.data as date) as data,&#13;&#10;     descricao,&#13;&#10;     precounitario,&#13;&#10;     sum(quantidade) as qtdtotal,&#13;&#10;     sum(quantidade*precounitario) as precototal from itensvenda&#13;&#10;   inner join vendas on (vendas.codigo = itensvenda.vendas)&#13;&#10;   inner join produtos on (produtos.codigo = itensvenda.produtos)&#13;&#10;   group by 1,2,3&#13;&#10;   order by 1" Database="FIBDatabase1" PropData="0A506172616D65746572730100"/>
+    <TfrxReportTitle Name="ReportTitle1" Height="51" Left="0" Top="17" Width="384">
+      <TfrxDMPMemoView Name="DMPMemo1" Left="0" Top="17" Width="384" Height="17" FontStyle="0" HAlign="haCenter" ParentFont="False" Text="RELATORIO DE VENDAS"/>
+      <TfrxDMPMemoView Name="DMPMemo3" Left="0" Top="0" Width="384" Height="17" FontStyle="0" ParentFont="False" Text="----------------------------------------"/>
+      <TfrxDMPMemoView Name="DMPMemo2" Left="0" Top="34" Width="384" Height="17" FontStyle="0" ParentFont="False" Text="----------------------------------------"/>
+    </TfrxReportTitle>
+    <TfrxGroupHeader Name="GroupHeader1" Height="34" Left="0" Top="102" Width="384" Condition="FIBQuery1.&#34;DATA&#34;">
+      <TfrxDMPMemoView Name="DMPMemo4" Left="0" Top="0" Width="172,8" Height="17" DataField="DATA" DataSet="FIBQuery1" DataSetName="FIBQuery1" FontStyle="0" ParentFont="False" Text="[FIBQuery1.&#34;DATA&#34;]"/>
+      <TfrxDMPMemoView Name="DMPMemo8" Left="0" Top="17" Width="230,4" Height="17" FontStyle="0" ParentFont="False" Text="Descricao"/>
+      <TfrxDMPMemoView Name="DMPMemo9" Left="230,4" Top="17" Width="76,8" Height="17" FontStyle="0" HAlign="haRight" ParentFont="False" Text="Qtd."/>
+      <TfrxDMPMemoView Name="DMPMemo10" Left="307,2" Top="17" Width="76,8" Height="17" FontStyle="0" HAlign="haRight" ParentFont="False" Text="V. Tot."/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData1" Height="17" Left="0" Top="153" Width="384" ColumnWidth="0" ColumnGap="0" DataSet="FIBQuery1" DataSetName="FIBQuery1" RowCount="0">
+      <TfrxDMPMemoView Name="DMPMemo5" Left="0" Top="0" Width="230,4" Height="17" DataField="DESCRICAO" DataSet="FIBQuery1" DataSetName="FIBQuery1" FontStyle="0" ParentFont="False" Text="[FIBQuery1.&#34;DESCRICAO&#34;]"/>
+      <TfrxDMPMemoView Name="DMPMemo6" Left="230,4" Top="0" Width="76,8" Height="17" DataField="QTDTOTAL" DataSet="FIBQuery1" DataSetName="FIBQuery1" FontStyle="0" HAlign="haRight" ParentFont="False" Text="[FIBQuery1.&#34;QTDTOTAL&#34;]"/>
+      <TfrxDMPMemoView Name="DMPMemo7" Left="307,2" Top="0" Width="76,8" Height="17" DataField="PRECOTOTAL" DataSet="FIBQuery1" DataSetName="FIBQuery1" DisplayFormat.DecimalSeparator="," DisplayFormat.FormatStr="%2.2n" DisplayFormat.Kind="fkNumeric" FontStyle="0" HAlign="haRight" ParentFont="False" Text="[FIBQuery1.&#34;PRECOTOTAL&#34;]"/>
+    </TfrxMasterData>
+    <TfrxGroupFooter Name="GroupFooter1" Height="17" Left="0" Top="187" Width="384"/>
+  </TfrxDMPPage>
+</TfrxReport>
